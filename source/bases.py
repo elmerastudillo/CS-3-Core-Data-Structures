@@ -1,9 +1,10 @@
 #!python
 
 import string
+import math
 # Hint: Use these string constants to encode/decode hexadecimal digits and more
 # string.digits is '0123456789'
-# string.hexdigits is '0123456789abcdefABCDEF'
+string.hexdigits is '0123456789abcdefABCDEF'
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
@@ -17,12 +18,31 @@ def decode(digits, base):
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
+
+    digits_length = len(digits)
+    total = 0
+
     # TODO: Decode digits from binary (base 2)
+    if base is 2:
+        for index in range(digits_length):
+            # Getting the number from binary by using thr formula base^index * [value of index]
+            number = math.pow(base, index) * int(digits[-index - 1])
+            total += number
+        print(total)
+        return  total
     # ...
     # TODO: Decode digits from hexadecimal (base 16)
+    # if digits is string.hexdigits:
+    #     for index
     # ...
     # TODO: Decode digits from any base (2 up to 36)
     # ...
+    if base > 2:
+        for index in range(digits_length):
+            number = math.pow(base, index) * int(digits[-index - 1])
+            total += number
+        print(total)
+        return total
 
 
 def encode(number, base):
@@ -34,11 +54,33 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
+
+    number_length_str = str(number)
+
     # TODO: Encode number in binary (base 2)
     # ...
+    value = []
+
+    if base is 2:
+        while number > 0:
+            remainder = number % base
+            number = int(number/base)
+            value.insert(0, remainder)
+        print(value)
+        return  str(value)
+
+            # value.insert(0,number)
+
     # TODO: Encode number in hexadecimal (base 16)
     # ...
     # TODO: Encode number in any base (2 up to 36)
+    if base > 2:
+        while number > 0:
+            remainder = number % base
+            number = int(number/base)
+            value.insert(0, remainder)
+        print(value)
+        return  str(value)
     # ...
 
 
