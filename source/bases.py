@@ -2,14 +2,16 @@
 
 import string
 import math
+import re
 # Hint: Use these string constants to encode/decode hexadecimal digits and more
 # string.digits is '0123456789'
-string.hexdigits is '0123456789abcdefABCDEF'
+# string.hexdigits is '0123456789abcdefABCDEF'
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
-
+LCASE_SHIFT = 87
+UCASE_SHIFT = 55
 
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
@@ -25,20 +27,27 @@ def decode(digits, base):
     # TODO: Decode digits from binary (base 2)
     if base is 2:
         for index in range(digits_length):
-            # Getting the number from binary by using thr formula base^index * [value of index]
+            # Getting the number from binary by using the formula base^index * [value of index]
             number = math.pow(base, index) * int(digits[-index - 1])
             total += number
         print(total)
         return  total
     # ...
     # TODO: Decode digits from hexadecimal (base 16)
-    # if digits is string.hexdigits:
-    #     for index
+    if re.search('[a-zA-z]', digits):
+        list_of_digits = list(digits)
+        for i in list_of_digits:  
+            if i.isupper():
+                i = ord(i) - UCASE_SHIFT
+            else if i.islower():
+                i = ord(i) - LCASE_SHIFT 
+
     # ...
     # TODO: Decode digits from any base (2 up to 36)
     # ...
     if base > 2:
         for index in range(digits_length):
+            # Getting the number from binary by using the formula base^index * [value of index]
             number = math.pow(base, index) * int(digits[-index - 1])
             total += number
         print(total)
@@ -60,19 +69,24 @@ def encode(number, base):
     # TODO: Encode number in binary (base 2)
     # ...
     value = []
+    binary_string = ""
 
     if base is 2:
+        # While the number is still divisible
         while number > 0:
+            # Get the remainder as the remainder is the actual binary digit
             remainder = number % base
+            # set the number to be the whole number left after division
             number = int(number/base)
+            # Insert the number into the beginning of the list (Prepend)
             value.insert(0, remainder)
+        binary_string = ''.join(map(str, value))
         print(value)
-        return  str(value)
-
-            # value.insert(0,number)
+        return binary_string
 
     # TODO: Encode number in hexadecimal (base 16)
     # ...
+
     # TODO: Encode number in any base (2 up to 36)
     if base > 2:
         while number > 0:
@@ -80,8 +94,11 @@ def encode(number, base):
             number = int(number/base)
             value.insert(0, remainder)
         print(value)
-        return  str(value)
+        binary_string = ''.join(map(str, value))
+        return binary_string
     # ...
+
+#   
 
 
 def convert(digits, base1, base2):
