@@ -16,6 +16,8 @@ class SearchTest(unittest.TestCase):
         assert linear_search(names, 'Julia') == 4
         assert linear_search(names, 'Alex') == 5
         assert linear_search(names, 'Nick') == 6
+        assert linear_search(names, 'Jeremy') is None
+        assert linear_search(names, 'nobody') is None
 
     def test_linear_search_with_items_not_in_list(self):
         # linear search can find items regardless of list order

@@ -20,15 +20,14 @@ def linear_search_recursive(array, item, index=0):
     # TODO: implement linear search recursively here
     # once implemented, change linear_search to call linear_search_recursive
     # to verify that your recursive implementation passes all tests
-    print(array)
-    while index < len(array):
+
+    # If index is bigger than the length of the array return None
+    if index < len(array):
         if item == array[index]:
-            print(array[index])
-            return array[index]
-        else:
-            # del array[index]
-            print(array[index])
-            linear_search_recursive(array, item, index + 1)
+            return index
+        index = index + 1
+        return linear_search_recursive(array, item, index)
+    return None
 
 
 def binary_search(array, item):
@@ -37,6 +36,7 @@ def binary_search(array, item):
     # change this to call your implementation to verify it passes all tests
     return binary_search_iterative(array, item)
     # return binary_search_recursive(array, item)
+    pass
 
 
 def binary_search_iterative(array, item):
@@ -47,7 +47,45 @@ def binary_search_iterative(array, item):
 
 
 def binary_search_recursive(array, item, left=None, right=None):
-    # TODO: implement binary search recursively here
-    pass
+    #     return itemTODO: implement binary search recursively here
+    if left is None:
+        left = 0
+    if right is None:
+        right = (len(array) - 1)
+
+    middle = int((left + right) / 2)
+    print(middle)
+    print(array[middle])
+    print(item)
+    # index = array[middle]
+
+    
+    if item == array[middle]:
+        # print(array[middle])
+        # print(middle)
+        return middle
+
+    if array[middle] < item:
+        left = middle + 1
+        print(left)
+        print(right)
+        print(middle)
+        binary_search_recursive(array, item, left, right)
+
+    if array[middle] > item:
+        right = middle - 1
+        print(left)
+        print(right)
+        print(middle)
+        binary_search_recursive(array, item, left, right)
+
+    # if item 
+    # elif middle < 
+    
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
+names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
+binary_search_recursive(names, 'Kojin')
+# linear_search_recursive(names, "Nick")
+
+
