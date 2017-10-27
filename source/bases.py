@@ -81,11 +81,21 @@ def encode(number, base):
             # Insert the number into the beginning of the list (Prepend)
             value.insert(0, remainder)
         binary_string = ''.join(map(str, value))
+
         print(value)
         return binary_string
 
     # TODO: Encode number in hexadecimal (base 16)
     # ...
+    if base is 16:
+         while number > 0:
+            # Get the remainder as the remainder is the actual binary digit
+            remainder = number % base
+            # set the number to be the whole number left after division
+            number = int(number/base)
+            # Insert the number into the beginning of the list (Prepend)
+            value.insert(0, remainder)
+        binary_string = ''.join(map(str, value))
 
     # TODO: Encode number in any base (2 up to 36)
     if base > 2:
