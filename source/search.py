@@ -41,43 +41,49 @@ def binary_search(array, item):
 
 def binary_search_iterative(array, item):
     # TODO: implement binary search iteratively here
+    lower_bound = 0
+    upper_bound = (len(array) - 1)
+
+   # while 
+
     pass
     # once implemented, change binary_search to call binary_search_iterative
     # to verify that your iterative implementation passes all tests
 
 
 def binary_search_recursive(array, item, left=None, right=None):
-    #     return itemTODO: implement binary search recursively here
-    if left is None:
-        left = 0
+    #TODO: implement binary search recursively here
 
-    if right is None:
-        # Getting the max of the length
+    # Setting the left and right index
+    # Left index is the 0
+    # Right index is the 
+    if left is None and right is None:
+        left = 0
         right = (len(array) - 1)
 
+    # Middle is the left + right index / 2
     middle = int((left + right) / 2)
-    # index = array[middle]
 
+    # If item is equal the middle index of the array return index
     if item == array[middle]:
-        # print(array[middle])
-        # print(middle)
-        print(middle)
         return middle
 
-    # middle of list is less than item then to the right
+    # If middle item is less than item the mode the left index plus one
     if array[middle] < item:
         left = middle + 1
 
-    # middle 
+    # If middle item is more than item the mode the left index plus one 
     if array[middle] > item:
         right = middle - 1
+
+    # If the left index surpassed the right index then return None
+    if left > right:
+        return None
         
     print("left " + str(left))
     print("right " + str(right))
     return binary_search_recursive(array, item, left,right)
 
-    # if item 
-    # elif middle < 
     
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
