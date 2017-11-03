@@ -5,6 +5,13 @@ def contains(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
+    # print(word_array)
+    for w in clean_text:
+        print(w)
+        # print(pattern)
+        if pattern == w:
+            return True
+    return False
 
 
 def find_index(text, pattern):
@@ -13,6 +20,11 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
+    clean_text = re.sub(r'[^A-Za-z ]+', '', text).lower()
+    try:
+        return clean_text.index('zzzzzzz')
+    except ValueError:
+         return None
 
 
 def find_all_indexes(text, pattern):
