@@ -1,5 +1,6 @@
 #!python
 
+## SHOUT TO MR JEFF CHIU
 class Node(object):
 
     def __init__(self, data):
