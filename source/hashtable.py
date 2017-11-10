@@ -79,7 +79,8 @@ class HashTable(object):
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         # Check if an entry with the given key exists in that bucket
-        entry = bucket.find(lambda node: node[0] == key)
+        entry = bucket.find(lambda key_value: key_value[0] == key)
+
         return entry is not None  # True or False
 
     def get(self, key):
@@ -90,7 +91,8 @@ class HashTable(object):
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         # Find the entry with the given key in that bucket, if one exists
-        entry = bucket.find(lambda node: node[0] == key)
+
+        entry = bucket.find(lambda key_value: key_value[0] == key)
         if entry is not None:  # Found
             # Return the given key's associated value
             assert isinstance(entry, tuple)
@@ -108,7 +110,8 @@ class HashTable(object):
         bucket = self.buckets[index]
         # Find the entry with the given key in that bucket, if one exists
         # Check if an entry with the given key exists in that bucket
-        entry = bucket.find(lambda node: node[0] == key)
+
+        entry = bucket.find(lambda key_value: key_value[0] == key)
         if entry is not None:  # Found
             # In this case, the given key's value is being updated
             # Remove the old key-value entry from the bucket first
@@ -132,7 +135,7 @@ class HashTable(object):
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         # Find the entry with the given key in that bucket, if one exists
-        entry = bucket.find(lambda node: node[0] == key)
+        entry = bucket.find(lambda key_value: key_value[0] == key)
         if entry is not None:  # Found
             # Remove the key-value entry from the bucket
             bucket.delete(entry)
