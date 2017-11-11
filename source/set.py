@@ -1,6 +1,6 @@
 from hashtable import HashTable
 
-# Indeed, CPython's sets are implemented as something like dictionaries 
+# Indeed, Python's sets are implemented as something like dictionaries 
 # with dummy values (the keys being the members of the set), with some optimization(s) that exploit this lack of values
 
 class Set(object):
@@ -10,7 +10,7 @@ class Set(object):
 		if elements is None:
 			self.data = HashTable(4)
 		else:
-			self.data = HashTable(elements)
+			self.data = HashTable(len(elements))
 
 
 	def contains(self, element):
@@ -39,20 +39,20 @@ class Set(object):
 
 	def union(self, other_set):
 		"""return a new set that is the union of this set and other_set"""
-		new_set = self.data.keys()
-		for element in other_set.keys():
-			if self.data.keys().contains(element):
+		new_set = Set(self.data.keys())
+		for element in other_set.data.keys():
+			if self.data.contains(element):
 				continue
-			else
+			else:
 				new_set.add(element)
-		return Set(new_set)
+		return new_set
 
 	def intersection(self, other_set):
 		"""return a new set that is the intersection of this set and other_set"""
-		if other_set.keys and self.data is not None:
+		if other_set.data and self.data is not None:
 			new_set = Set()
-			for element in other_set.keys():
-				if self.data.keys().contains(element):
+			for element in other_set.data.keys():
+				if self.data.contains(element):
 					new_set.add(element)
 			return new_set
 		else:
@@ -72,7 +72,7 @@ class Set(object):
 	def is_subset(self, other_set):
 		"""return a boolean indicating whether other_set is a subset of this set"""
 		if other_set and self.data is not None:
-			for element in other_set.keys():
+			for element in other_set.data.keys():
 				if self.data.keys().contains(element):
 					continue
 				else:
@@ -86,9 +86,25 @@ def test_set():
 	new_set.add("why")
 	new_set.add("where")
 	new_set.add("anchovies")
+	new_set.contains("where")
+	other_set = Set()
+	other_set.add("w")
+	other_set.add("e")
+	other_set.add("k")
+	other_set.add("hi")
+	other_set.add("why")
+	other_set.add("where")
+	sett = new_set.union(other_set)
+	inter_set = new_set.intersection(other_set)
+	print(inter_set.data)
 	print(new_set.data)
-	new_set.remove("hi")
-	print(new_set.data)
+	print(sett.data)
+
+	# print(new_set.contains("where"))
+	# print(new_set.contains("howdy"))
+	# print(new_set.data)
+	# new_set.remove("hi")
+	# print(new_set.data)
 	# print(new_set)
 
 if __name__ == '__main__':
