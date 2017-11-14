@@ -33,23 +33,20 @@ class BinaryTreeNode(object):
         """Return the height of this node (the number of edges on the longest
         downward path from this node to a descendant leaf node).
         TODO: Best and worst case running time: ??? under what conditions?"""
-        # TODO: Check if left child has a value and if so calculate its height
-        left_height = 0
-        right_height = 0
+        
+        if (self.left is None) and (self.right is None):
+            return 0
 
-        while self.left is not None:
-            self = self.left + 1
-            left_height =+ 1
+        # TODO: Check if left child has a value and if so calculate its height
+        if self.left is not None:
+            self.left = self.height()
 
         # TODO: Check if right child has a value and if so calculate its height
-        while self.right is not None:
-            self = self.right + 1
-            right_height =+ 1
+        if self.right is not None:
+            self.right = self.height()
+
         # Return one more than the greater of the left height and right height
-        if self.right > self.left:
-            return right_height.right + 1
-        elif self.right < self.left:
-            return left_height.left + 1
+        return max(self.left, self.right) + 1
 
 
 
@@ -110,8 +107,8 @@ class BinarySearchTree(object):
 
     def insert(self, item):
         """Insert the given item in order into this binary search tree.
-        TODO: Best case running time: ??? under what conditions?
-        TODO: Worst case running time: ??? under what conditions?"""
+        TODO: Best case running time: O1 under what conditions?
+        TODO: Worst case running time: O(log n) under what conditions?"""
         # Handle the case where the tree is empty
         if self.is_empty():
             # TODO: Create a new root node
@@ -142,7 +139,7 @@ class BinarySearchTree(object):
         # Loop until we descend past the closest leaf node
         while node is not None:
             # TODO: Check if the given item matches the node's data
-            if node.data is item:
+            if item is node.data:
                 # Return the found node
                 return node
             # TODO: Check if the given item is less than the node's data
