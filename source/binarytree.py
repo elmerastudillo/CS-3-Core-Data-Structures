@@ -154,6 +154,22 @@ class BinarySearchTree(object):
         # Not found
         return None
 
+    def _find_node_recursive(self, item, node = self.root):
+        """Return the node containing the given item in this binary search tree,
+        or None if the given item is not found.
+        TODO: Best case running time: ??? under what conditions?
+        TODO: Worst case running time: ??? under what conditions?"""
+        if item is node.data:
+            return node
+
+        if node is not None:
+            if item < node.data:
+                self._find_node_recursive(item, node.left)
+            elif item > node.data:
+                self._find_node_recursive(item, node.right)
+        else:
+            return None
+
 
     def _find_parent_node(self, item):
         """Return the parent node of the node containing the given item
@@ -182,6 +198,22 @@ class BinarySearchTree(object):
                 node = node.right
         # Not found
         return parent
+
+    def _find_parent_node_recursive(self, item, node = self.root, parent = None):
+         """Return the parent node of the node containing the given item
+        (or the parent node of where the given item would be if inserted)
+        in this tree, or None if this tree is empty or has only a root node.
+        TODO: Best case running time: ??? under what conditions?"""
+
+        if node is not None:
+            if node.data is item:
+                return parent
+            elif item < node.data:
+                self._find_parent_node_recursive(item, node.left, node)
+            elif item > node.data:
+                self._find_parent_node_recursive(item, node.right, node)
+        else:
+            return parent
 
     # This space intentionally left blank (please do not delete this comment)
 
@@ -300,17 +332,17 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Create queue to store nodes not yet traversed in level-order
+        # Create queue to store nodes not yet traversed in level-order
         queue = LinkedQueue()
-        # TODO: Enqueue given starting node
+        # Enqueue given starting node
         queue.enqueue(start_node)
-        # TODO: Loop until queue is empty
+        # Loop until queue is empty
         while queue.length() is not 0:
-            # TODO: Dequeue node at front of queue
+            # Dequeue node at front of queue
             node = queue.dequeue()
-            # TODO: Visit this node's data with given function
+            # Visit this node's data with given function
             visit(node.data)
-            # TODO: Enqueue this node's left child, if it exists
+            # Enqueue this node's left child, if it exists
             if node.left is not None:
                 queue.enqueue(node.left)
             # TODO: Enqueue this node's right child, if it exists
