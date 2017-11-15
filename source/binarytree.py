@@ -211,26 +211,26 @@ class BinarySearchTree(object):
         return parent
 
     def _find_parent_node_recursive(self, item, node, parent = None):
+        # Return none if no item found
         if node is None:
             return None
         # Return item if found
-        if node.data is item:
-            return parent
+        if item is node.data:
+            return node
         # IF item is less than node.data then compare left
-        elif item < node.data:
-            # if node.left is none then return parent node
+        if item < node.data:
+            # if node.left is none then return node (parent)
             if node.left is None:
                 return node
             # if node.left has value then keep looking
             return self._find_parent_node_recursive(item, node.left, node)
+            # If node.right is none then return node (parent)
         elif item > node.data:
-            # If node.right is none then return parent node
             if node.right is None:
                 return node
-                # if node.right has a value keep looking
+            # if node.right has a value keep looking
             return self._find_parent_node_recursive(item, node.right, node)
-
-
+            
 
     # This space intentionally left blank (please do not delete this comment)
 
