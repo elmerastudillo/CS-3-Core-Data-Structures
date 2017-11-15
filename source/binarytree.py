@@ -35,7 +35,7 @@ class BinaryTreeNode(object):
         downward path from this node to a descendant leaf node).
         TODO: Best and worst case running time: ??? under what conditions?"""
         
-        if (self.left is None) and (self.right is None):
+        if self.is_leaf():
             return 0
 
         # TODO: Check if left child has a value and if so calculate its height
@@ -98,7 +98,8 @@ class BinarySearchTree(object):
         TODO: Best case running time: ??? under what conditions?
         TODO: Worst case running time: ??? under what conditions?"""
         # Find a node with the given item, if any
-        node = self._find_node(item)
+        # node = self._find_node(item)
+        node = self._find_node_recursive(item, self.root)
         # TODO: Return the node's data if found, or None
         # return node.data if ... else None
         if node is None:
@@ -118,7 +119,7 @@ class BinarySearchTree(object):
             self.size += 1
             return
         # Find the parent node of where the given item should be inserted
-        parent = self._find_parent_node(item)
+        parent = self._find_parent_node_recursive(item, self.root)
         # TODO: Check if the given item should be inserted left of parent node
         if item < parent.data:
             # TODO: Create a new node and set the parent's left child
@@ -154,21 +155,31 @@ class BinarySearchTree(object):
         # Not found
         return None
 
-    def _find_node_recursive(self, item, node = self.root):
+    def _find_node_recursive(self, item, node):
         """Return the node containing the given item in this binary search tree,
         or None if the given item is not found.
         TODO: Best case running time: ??? under what conditions?
         TODO: Worst case running time: ??? under what conditions?"""
-        if item is node.data:
+        # If item equals node data return node
+        if node.data == item:
             return node
-
-        if node is not None:
-            if item < node.data:
-                self._find_node_recursive(item, node.left)
-            elif item > node.data:
-                self._find_node_recursive(item, node.right)
-        else:
+        # if node is leaf then we have got to the end of the tree
+        if node.is_leaf():
             return None
+        # Assigning find_node_recursive to left and right subtree
+        left_subtree = self._find_node_recursive(item, node.left)
+        right_subtree = self._find_node_recursive(item, node.right)
+
+        # If left_subtree returned a node to the left then keep going
+        if left_subtree is not None:
+            return left_subtree
+        # If right_subtree returned a node to the right then keep going
+        elif right_subtree is not None:
+            return right_subtree
+        else: 
+            return None
+
+
 
 
     def _find_parent_node(self, item):
@@ -199,21 +210,27 @@ class BinarySearchTree(object):
         # Not found
         return parent
 
-    def _find_parent_node_recursive(self, item, node = self.root, parent = None):
-         """Return the parent node of the node containing the given item
-        (or the parent node of where the given item would be if inserted)
-        in this tree, or None if this tree is empty or has only a root node.
-        TODO: Best case running time: ??? under what conditions?"""
-
-        if node is not None:
-            if node.data is item:
-                return parent
-            elif item < node.data:
-                self._find_parent_node_recursive(item, node.left, node)
-            elif item > node.data:
-                self._find_parent_node_recursive(item, node.right, node)
-        else:
+    def _find_parent_node_recursive(self, item, node, parent = None):
+        if node is None:
+            return None
+        # Return item if found
+        if node.data is item:
             return parent
+        # IF item is less than node.data then compare left
+        elif item < node.data:
+            # if node.left is none then return parent node
+            if node.left is None:
+                return node
+            # if node.left has value then keep looking
+            return self._find_parent_node_recursive(item, node.left, node)
+        elif item > node.data:
+            # If node.right is none then return parent node
+            if node.right is None:
+                return node
+                # if node.right has a value keep looking
+            return self._find_parent_node_recursive(item, node.right, node)
+
+
 
     # This space intentionally left blank (please do not delete this comment)
 
