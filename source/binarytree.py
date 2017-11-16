@@ -176,10 +176,6 @@ class BinarySearchTree(object):
         # If right_subtree returned a node to the right then keep going
         elif right_subtree is not None:
             return right_subtree
-        else: 
-            return None
-
-
 
 
     def _find_parent_node(self, item):
@@ -249,19 +245,16 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Traverse left subtree, if it exists
+        # Traverse left subtree, if it exists
         if node.left is not None:
-            #node = node.left
             self._traverse_in_order_recursive(node.left, visit)
 
 
         # Visit this node's data with given function
         visit(node.data)
-        # items.append(node.data)
 
-        # TODO: Traverse right subtree, if it exists
+        # Traverse right subtree, if it exists
         if node.right is not None:
-            #node = node.right
             self._traverse_in_order_recursive(node.right, visit)
 
     
@@ -287,12 +280,12 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Visit this node's data with given function
+        # Visit this node's data with given function
         visit(node.data)
-        # TODO: Traverse left subtree, if it exists
+        # Traverse left subtree, if it exists
         if node.left is not None:
             self._traverse_pre_order_recursive(node.left, visit)
-        # TODO: Traverse right subtree, if it exists
+        # Traverse right subtree, if it exists
         if node.right is not None:
             self._traverse_pre_order_recursive(node.right, visit)
 
@@ -318,12 +311,12 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Traverse left subtree, if it exists
+        # Traverse left subtree, if it exists
         if node.left is not None:
             self._traverse_post_order_recursive(node.left, visit)
-        # TODO: Traverse right subtree, if it exists
+        # Traverse right subtree, if it exists
         if node.right is not None:
-        # TODO: Visit this node's data with given functio
+        # Visit this node's data with given functio
             self._traverse_post_order_recursive(node.right, visit)
 
         visit(node.data)
@@ -354,7 +347,7 @@ class BinarySearchTree(object):
         # Enqueue given starting node
         queue.enqueue(start_node)
         # Loop until queue is empty
-        while queue.length() is not 0:
+        while not queue.is_empty():
             # Dequeue node at front of queue
             node = queue.dequeue()
             # Visit this node's data with given function
@@ -362,7 +355,7 @@ class BinarySearchTree(object):
             # Enqueue this node's left child, if it exists
             if node.left is not None:
                 queue.enqueue(node.left)
-            # TODO: Enqueue this node's right child, if it exists
+            # Enqueue this node's right child, if it exists
             if node.right is not None:
                 queue.enqueue(node.right)
 
@@ -383,7 +376,6 @@ def test_binary_search_tree():
         tree.insert(item)
         print('insert({}), size: {}'.format(item, tree.size))
     print('root: {}'.format(tree.root))
-
     print('\nSearching for items:')
     for item in items:
         result = tree.search(item)
