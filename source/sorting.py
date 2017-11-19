@@ -4,11 +4,17 @@ import pdb
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order."""
     # TODO: Check that all adjacent items are in order, return early if not
-    for i in range(len(items) - 1):
-        if items[i] > items[i + 1]:
-            continue
-        else:
-            return False
+    # for i in range(len(items) - 1):
+    #     if items[i] > items[i + 1]:
+    #         continue
+    #     else:
+    #         return False
+    # return True
+
+    for index, item in enumerate(items):
+        if index+1 < len(items):
+            if item > items[index+1]:
+                return False
     return True
 
 
@@ -17,15 +23,16 @@ def bubble_sort(items):
     repeating until all items are in sorted order."""
     # TODO: Repeat until all items are in sorted order
     # TODO: Swap adjacent items that are out of order
-    # loop through list 
-    for i in range(len(items) - 1):
-        # Loop backwards avoiding the already sorted numbers
-        for j in range(len(items) - 1 - i):
-            # if left item is bigger than the right
-            if items[j] > items[j + 1]:
-                # Swap left and right
-                items[j], items[j + 1] = items[j + 1], items[j]
-    return items
+    # loop through list
+    while not is_sorted:
+        for i in range(len(items) - 1):
+            # Loop backwards avoiding the already sorted numbers
+            for j in range(len(items) - 1 - i):
+                # if left item is bigger than the right
+                if items[j] > items[j + 1]:
+                    # Swap left and right 
+                    items[j], items[j + 1] = items[j + 1], items[j]
+        return items
 
 
 
@@ -37,18 +44,19 @@ def selection_sort(items):
     # TODO: Find minimum item in unsorted items
     # TODO: Swap it with first unsorted item
     # pdb.set_trace()
-    for i in range(len(items) - 1):
-        # setting the minimum to start with
-        min = i
-        # Start looping from the current index i
-        for j in range(i + 1, len(items)):
-            # if j is less than our current minimum
-            if items[j] < items[min]:
-                # set j to our minimum
-                min = j
-        # Once loop is done set i to be our minimum
-        items[i], items[min] = items[min], items[i]
-    return items
+    while not is_sorted:
+        for i in range(len(items) - 1):
+            # setting the minimum to start with
+            min = i
+            # Start looping from the current index i
+            for j in range(i + 1, len(items)):
+                # if j is less than our current minimum
+                if items[j] < items[min]:
+                    # set j to our minimum
+                    min = j
+            # Once loop is done set i to be our minimum
+            items[i], items[min] = items[min], items[i]
+        return items
 
 
 
@@ -59,6 +67,7 @@ def insertion_sort(items):
     # TODO: Repeat until all items are in sorted order
     # TODO: Take first unsorted item
     # TODO: Insert it in sorted order in front of items
+    while not is_sorted:
     for i in range(len(items) - 1):
         # Loop through the list in reversal until you get to 0
         for j in range(i - 1, - 1, -1):
