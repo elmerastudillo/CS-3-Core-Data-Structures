@@ -3,7 +3,7 @@ import pdb
 
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order."""
-    # TODO: Check that all adjacent items are in order, return early if not
+    # Check that all adjacent items are in order, return early if not
     # for i in range(len(items) - 1):
     #     if items[i] > items[i + 1]:
     #         continue
@@ -21,8 +21,8 @@ def is_sorted(items):
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
     repeating until all items are in sorted order."""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Swap adjacent items that are out of order
+    # Repeat until all items are in sorted order
+    # Swap adjacent items that are out of order
     # loop through list
     while not is_sorted:
         for i in range(len(items) - 1):
@@ -40,9 +40,9 @@ def bubble_sort(items):
 def selection_sort(items):
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order."""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Find minimum item in unsorted items
-    # TODO: Swap it with first unsorted item
+    # Repeat until all items are in sorted order
+    # Find minimum item in unsorted items
+    # Swap it with first unsorted item
     # pdb.set_trace()
     while not is_sorted:
         for i in range(len(items) - 1):
@@ -64,9 +64,9 @@ def selection_sort(items):
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order."""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Take first unsorted item
-    # TODO: Insert it in sorted order in front of items
+    # Repeat until all items are in sorted order
+    # Take first unsorted item
+    # Insert it in sorted order in front of items
     while not is_sorted:
     for i in range(len(items) - 1):
         # Loop through the list in reversal until you get to 0
