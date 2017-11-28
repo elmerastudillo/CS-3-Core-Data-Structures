@@ -13,6 +13,7 @@ def is_sorted(items):
 
     for index, item in enumerate(items):
         if index+1 < len(items):
+        # If item is larger than succeeding item, return False
             if item > items[index+1]:
                 return False
     return True
@@ -24,7 +25,7 @@ def bubble_sort(items):
     # Repeat until all items are in sorted order
     # Swap adjacent items that are out of order
     # loop through list
-    while not is_sorted:
+    while not is_sorted(items):
         for i in range(len(items) - 1):
             # Loop backwards avoiding the already sorted numbers
             for j in range(len(items) - 1 - i):
@@ -44,7 +45,7 @@ def selection_sort(items):
     # Find minimum item in unsorted items
     # Swap it with first unsorted item
     # pdb.set_trace()
-    while not is_sorted:
+    while not is_sorted(items):
         for i in range(len(items) - 1):
             # setting the minimum to start with
             min = i
@@ -67,19 +68,22 @@ def insertion_sort(items):
     # Repeat until all items are in sorted order
     # Take first unsorted item
     # Insert it in sorted order in front of items
-    while not is_sorted:
-    for i in range(len(items) - 1):
-        # Loop through the list in reversal until you get to 0
-        for j in range(i - 1, - 1, -1):
-            # If left index is bigger than right index
-            if items[j] > items[j + 1]:
-                # Then swap
-                items[j], items[j + 1] = items[j + 1], items[j]
-            else:
-                # Break once the item is not bigger and insert
-                break
-    return items
-            
+
+    # NOTE: Need to be able to sort multiples
+    while not is_sorted(items):
+        # 
+        for i in range(len(items)-1):
+            # Loop through the list in reversal until you get to 0
+            for j in range(i, - 1, -1):
+                # If left index is bigger than right index
+                if items[j] > items[j + 1]:
+                    # Then swap
+                    items[j], items[j + 1] = items[j + 1], items[j]
+                else:
+                    # Break once the item is not bigger and insert
+                    break
+        return items
+
 
 
 
@@ -139,14 +143,15 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    unsorted_list = [5,4,7,10,1,3,2]
+    unsorted_list = [6, 5, 4, 3, 2, 1]
     # sorted_list = bubble_sort(unsorted_list)
     # print(sorted_list)
-    sorted_list = selection_sort(unsorted_list)
-    print(sorted_list)
+    # sorted_list = selection_sort(unsorted_list)
+    # print(sorted_list)
+    # print(unsorted_list)
     sorted_list = insertion_sort(unsorted_list)
     print(sorted_list)
     # print(selection_sort(unsorted_list))
-    new_list = bubble_sort(unsorted_list)
-    print(bubble_sort(unsorted_list))
+    # new_list = bubble_sort(unsorted_list)
+    # print(bubble_sort(unsorted_list))
     # print(new_list)
