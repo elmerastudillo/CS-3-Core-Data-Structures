@@ -2,8 +2,9 @@
 import pdb
 
 def is_sorted(items):
-<<<<<<< HEAD
     """Return a boolean indicating whether given items are in sorted order."""
+    # TODO: Running time: ??? Why and under what conditions?
+    # TODO: Memory usage: ??? Why and under what conditions?"""
     # Check that all adjacent items are in order, return early if not
     # for i in range(len(items) - 1):
     #     if items[i] > items[i + 1]:
@@ -18,21 +19,16 @@ def is_sorted(items):
             if item > items[index+1]:
                 return False
     return True
-=======
-    """Return a boolean indicating whether given items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Check that all adjacent items are in order, return early if not
->>>>>>> 304f295769896473fc8929a5b86878716d52c4ac
 
 
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
-<<<<<<< HEAD
     repeating until all items are in sorted order."""
     # Repeat until all items are in sorted order
     # Swap adjacent items that are out of order
     # loop through list
+    # TODO: Running time: ??? Why and under what conditions?
+    # TODO: Memory usage: ??? Why and under what conditions?"""
     while not is_sorted(items):
         for i in range(len(items) - 1):
             # Loop backwards avoiding the already sorted numbers
@@ -44,22 +40,15 @@ def bubble_sort(items):
         return items
 
 
-=======
-    repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Swap adjacent items that are out of order
->>>>>>> 304f295769896473fc8929a5b86878716d52c4ac
-
 
 def selection_sort(items):
     """Sort given items by finding minimum item, swapping it with first
-<<<<<<< HEAD
     unsorted item, and repeating until all items are in sorted order."""
     # Repeat until all items are in sorted order
     # Find minimum item in unsorted items
     # Swap it with first unsorted item
+    # TODO: Running time: ??? Why and under what conditions?
+    # TODO: Memory usage: ??? Why and under what conditions?"""
     # pdb.set_trace()
     while not is_sorted(items):
         for i in range(len(items) - 1):
@@ -76,24 +65,15 @@ def selection_sort(items):
         return items
 
 
-=======
-    unsorted item, and repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Find minimum item in unsorted items
-    # TODO: Swap it with first unsorted item
->>>>>>> 304f295769896473fc8929a5b86878716d52c4ac
-
 
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
-<<<<<<< HEAD
     order in front of items, and repeating until all items are in order."""
     # Repeat until all items are in sorted order
     # Take first unsorted item
     # Insert it in sorted order in front of items
-
+    # TODO: Running time: ??? Why and under what conditions?
+    # TODO: Memory usage: ??? Why and under what conditions?"""
     # NOTE: Need to be able to sort multiples
     while not is_sorted(items):
         # 
@@ -113,8 +93,8 @@ def insertion_sort(items):
 
 
 def test_sorting(sort=selection_sort, num_items=20, max_value=50):
-=======
-    order in front of items, and repeating until all items are in order.
+
+    """Order in front of items, and repeating until all items are in order.
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
     # TODO: Repeat until all items are in sorted order
@@ -124,33 +104,69 @@ def test_sorting(sort=selection_sort, num_items=20, max_value=50):
 
 def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,
-    and return a new list containing all items in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    and return a new list containing all items in sorted order. """
+    # TODO: Running time: ??? Why and under what conditions?
+    # TODO: Memory usage: ??? Why and under what conditions
     # TODO: Repeat until one list is empty
+    left_index = 0
+    right_index = 0
+    merge_list = []
+    while (left_index < len(items1)) and (right_index < len(items2)):
     # TODO: Find minimum item in both lists and append it to new list
+        if items1[left_index] > items2[right_index]:
+            merge_list.append(items2[right_index])
+            right_index += 1
+        elif items1[left_index] < items2[right_index]:
+            merge_list.append(items1[left_index])
+            left_index += 1
+        elif items1[left_index] == items2[right_index]:
+            merge_list.append(items1[left_index])
+            merge_list.append(items2[right_index])
+            right_index += 1
+            left_index += 1
     # TODO: Append remaining items in non-empty list to new list
+    if left_index == len(items1):
+        merge_list.extend(items2[right_index:])
+    elif right_index == len(items2):
+        merge_list.extend(items1[left_index:])
+
+    return merge_list
+    
+
 
 
 def split_sort_merge(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each with an iterative sorting algorithm, and merging results into
-    a list in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Split items list into approximately equal halves
+    a list in sorted order. """
+    # TODO: Running time: ??? Why and under what conditions?
+    # TODO: Memory usage: ??? Why and under what conditions?
+    # Split items list into approximately equal halves
+    pivot = int(len(items)/2)
+    first_half = items[:pivot]
+    second_half = items[pivot:]
     # TODO: Sort each half using any other sorting algorithm
+    while not is_sorted(first_half):
+        bubble_sort(first_half)
+
+    while not is_sorted(second_half):
+        insertion_sort(second_half)
     # TODO: Merge sorted halves into one list in sorted order
+    # Why does this mutate when we use list[:]
+    items[:] = merge(first_half,second_half)
 
 
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
-    sorting each recursively, and merging results into a list in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    sorting each recursively, and merging results into a list in sorted order. """
+    # TODO: Running time: ??? Why and under what conditions?
+    # TODO: Memory usage: ??? Why and under what conditions?
     # TODO: Check if list is so small it's already sorted (base case)
+
     # TODO: Split items list into approximately equal halves
+
     # TODO: Sort each half by recursively calling merge sort
+
     # TODO: Merge sorted halves into one list in sorted order
 
 
@@ -162,7 +178,6 @@ def random_ints(count=20, min=1, max=50):
 
 
 def test_sorting(sort=bubble_sort, num_items=20, max_value=50):
->>>>>>> 304f295769896473fc8929a5b86878716d52c4ac
     """Test sorting algorithms with a small list of random items."""
     # Create a list of items randomly sampled from range [1...max_value]
     items = random_ints(num_items, 1, max_value)
