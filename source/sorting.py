@@ -162,12 +162,18 @@ def merge_sort(items):
     # TODO: Running time: ??? Why and under what conditions?
     # TODO: Memory usage: ??? Why and under what conditions?
     # TODO: Check if list is so small it's already sorted (base case)
-
-    # TODO: Split items list into approximately equal halves
-
-    # TODO: Sort each half by recursively calling merge sort
-
-    # TODO: Merge sorted halves into one list in sorted order
+    if len(items) > 1:
+    # Split items list into approximately equal halves
+        pivot = int(len(items)/2)
+        first_half = items[:pivot]
+        second_half = items[pivot:]
+        # Sort each half by recursively calling merge sort
+        merge_sort(first_half)
+        merge_sort(second_half)
+        # Merge sorted halves into one list in sorted order
+        items[:] = merge(first_half,second_half)
+    return items
+    
 
 
 def random_ints(count=20, min=1, max=50):
@@ -239,13 +245,16 @@ def main():
 if __name__ == '__main__':
     # main()
     unsorted_list = [6, 5, 4, 3, 2, 1]
+    print(unsorted_list)
+    merge_list = merge_sort(unsorted_list)
+    print(merge_list)
     # sorted_list = bubble_sort(unsorted_list)
     # print(sorted_list)
     # sorted_list = selection_sort(unsorted_list)
     # print(sorted_list)
     # print(unsorted_list)
-    sorted_list = insertion_sort(unsorted_list)
-    print(sorted_list)
+    # sorted_list = insertion_sort(unsorted_list)
+    # print(sorted_list)
     # print(selection_sort(unsorted_list))
     # new_list = bubble_sort(unsorted_list)
     # print(bubble_sort(unsorted_list))

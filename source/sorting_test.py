@@ -5,7 +5,7 @@ from sorting import (is_sorted, bubble_sort, selection_sort, insertion_sort,
 import unittest
 
 # Change this variable to the sort function you want to test
-sort = split_sort_merge
+sort = merge_sort
 
 
 class IsSortedTest(unittest.TestCase):
