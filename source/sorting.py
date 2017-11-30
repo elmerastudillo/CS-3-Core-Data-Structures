@@ -105,7 +105,7 @@ def test_sorting(sort=selection_sort, num_items=20, max_value=50):
 def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,
     and return a new list containing all items in sorted order. """
-    # TODO: Running time: ??? Why and under what conditions?
+    # TODO: Running time: O(n + m), where n is the size of items 1 and m is the size of items 2
     # TODO: Memory usage: ??? Why and under what conditions
     # TODO: Repeat until one list is empty
     left_index = 0
@@ -130,6 +130,14 @@ def merge(items1, items2):
     elif right_index == len(items2):
         merge_list.extend(items1[left_index:])
 
+    # Alternate solution
+    # Add remaining items to merge_sort list from either items1 or items2
+    # Only one is guaranteed to run 
+    # for index in range(left_index, len(items1)):
+    #     merge_sort.append(index)
+
+    # for index in range(right_index, len(items1)):    
+    #     merge_sort.append(index)
     return merge_list
     
 
@@ -159,12 +167,12 @@ def split_sort_merge(items):
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each recursively, and merging results into a list in sorted order. """
-    # TODO: Running time: ??? Why and under what conditions?
-    # TODO: Memory usage: ??? Why and under what conditions?
-    # TODO: Check if list is so small it's already sorted (base case)
+    # Running time: O(nlogn) Best and Worst case
+    # Memory usage: O(nlogn) 
+    # Check if list is so small it's already sorted (base case)
     if len(items) > 1:
     # Split items list into approximately equal halves
-        pivot = int(len(items)/2)
+        pivot = len(items)//2
         first_half = items[:pivot]
         second_half = items[pivot:]
         # Sort each half by recursively calling merge sort
@@ -172,7 +180,6 @@ def merge_sort(items):
         merge_sort(second_half)
         # Merge sorted halves into one list in sorted order
         items[:] = merge(first_half,second_half)
-    return items
     
 
 
