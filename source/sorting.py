@@ -1,5 +1,6 @@
 #!python
 import pdb
+import random
 
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order."""
@@ -180,8 +181,52 @@ def merge_sort(items):
         merge_sort(second_half)
         # Merge sorted halves into one list in sorted order
         items[:] = merge(first_half,second_half)
-    
 
+def quick_sort(items, low, high):
+    # print(low)
+    # print(high)
+    if low  < high:
+        print(low)
+        print(high)
+        pivot = partition(items, low, high)
+        # print(pivot)
+        # Left side of pivot
+        quick_sort(items, low, pivot - 1)
+        # Right side of pivot
+        quick_sort(items, pivot + 1, high)
+
+# def swap(items, first_index):
+#     temp = items[first_index + 1]
+#     last = len(items) - 1
+#     items[first_index + 1] = items[]
+#     items[last] = temp
+
+
+def partition(items, low, high):
+    # Selecting pivet as far right number
+    pivot = items[high]
+    # print(pivot)
+    # print("Hi")
+    # pivet = random.randint(len(items))
+    i = low - 1
+    j = low
+    # print(i)
+    # print(j)
+    while j <= high - 1:
+        print(j)
+        if items[j] <= pivot:
+            i += 1
+            items[i], items[j] = items[j], items[i]
+        j += 1
+
+
+    # swap(items, i)
+    temp = items[i + 1]
+    items[i + 1] = pivot
+    items[high] = temp
+    # items[i + 1], items[high] = items[high], items[items + 1]
+    
+    return i + 1
 
 def random_ints(count=20, min=1, max=50):
     """Return a list of `count` integers sampled uniformly at random from
@@ -252,9 +297,17 @@ def main():
 if __name__ == '__main__':
     # main()
     unsorted_list = [6, 5, 4, 3, 2, 1]
+    quick_sort(unsorted_list, 0, len(unsorted_list) - 1)
     print(unsorted_list)
-    merge_list = merge_sort(unsorted_list)
-    print(merge_list)
+    # merge_sort(unsorted_list)
+    # print(unsorted_list)
+    # print(unsorted_list)
+    # print(len(unsorted_list))
+    # length = len(unsorted_list)
+    # slist = quick_sort(unsorted_list, 0,length - 1)
+    # print(quick_sort(unsorted_list, 0,length - 1))
+    # merge_list = merge_sort(unsorted_list)
+    # print(merge_list)
     # sorted_list = bubble_sort(unsorted_list)
     # print(sorted_list)
     # sorted_list = selection_sort(unsorted_list)
@@ -266,3 +319,4 @@ if __name__ == '__main__':
     # new_list = bubble_sort(unsorted_list)
     # print(bubble_sort(unsorted_list))
     # print(new_list)
+
