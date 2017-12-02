@@ -182,51 +182,6 @@ def merge_sort(items):
         # Merge sorted halves into one list in sorted order
         items[:] = merge(first_half,second_half)
 
-def quick_sort(items, low, high):
-    # print(low)
-    # print(high)
-    if low  < high:
-        print(low)
-        print(high)
-        pivot = partition(items, low, high)
-        # print(pivot)
-        # Left side of pivot
-        quick_sort(items, low, pivot - 1)
-        # Right side of pivot
-        quick_sort(items, pivot + 1, high)
-
-# def swap(items, first_index):
-#     temp = items[first_index + 1]
-#     last = len(items) - 1
-#     items[first_index + 1] = items[]
-#     items[last] = temp
-
-
-def partition(items, low, high):
-    # Selecting pivet as far right number
-    pivot = items[high]
-    # print(pivot)
-    # print("Hi")
-    # pivet = random.randint(len(items))
-    i = low - 1
-    j = low
-    # print(i)
-    # print(j)
-    while j <= high - 1:
-        print(j)
-        if items[j] <= pivot:
-            i += 1
-            items[i], items[j] = items[j], items[i]
-        j += 1
-
-
-    # swap(items, i)
-    temp = items[i + 1]
-    items[i + 1] = pivot
-    items[high] = temp
-    # items[i + 1], items[high] = items[high], items[items + 1]
-    
-    return i + 1
 
 def random_ints(count=20, min=1, max=50):
     """Return a list of `count` integers sampled uniformly at random from
