@@ -182,9 +182,12 @@ def merge_sort(items):
         # Merge sorted halves into one list in sorted order
         items[:] = merge(first_half,second_half)
 
-def quick_sort(items, low, high):
+def quick_sort(items, low = 0, high = -1):
     # print(low)
     # print(high)
+    if high == -1:
+        high = len(items) - 1 
+
     if low  < high:
         print(low)
         print(high)
