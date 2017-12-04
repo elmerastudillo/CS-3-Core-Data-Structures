@@ -183,6 +183,8 @@ def merge_sort(items):
         items[:] = merge(first_half,second_half)
 
 def quick_sort(items, low = 0, high = -1):
+    """Sort given items by finding the pivot of the list 
+    and then sorting the left side and right side of the pivot recursively. """
     if high == -1:
         high = len(items) - 1 
 
@@ -201,20 +203,27 @@ def quick_sort(items, low = 0, high = -1):
 
 
 def partition(items, low, high):
+    """We set the high index as the pivot and then move all the less then numbers
+     to the left of the pivot and more then numbers to the right side of the pivot."""
     # Selecting pivot as far right number
     pivot = items[high]
     i = low - 1
     j = low
     while j <= high - 1:
         print(j)
+        # If the value in index j is less than the pivot
         if items[j] <= pivot:
+            # We increate the index of i by 1
             i += 1
+            # Swap the values in index i and j
             items[i], items[j] = items[j], items[i]
+        # Increase the index of J by 1 after every check
         j += 1
-
+    # Swap the pivot with the index after i (i + 1)
     temp = items[i + 1]
     items[i + 1] = pivot
     items[high] = temp
+    # Return the pivot
     return i + 1
 
 def random_ints(count=20, min=1, max=50):
