@@ -183,16 +183,11 @@ def merge_sort(items):
         items[:] = merge(first_half,second_half)
 
 def quick_sort(items, low = 0, high = -1):
-    # print(low)
-    # print(high)
     if high == -1:
         high = len(items) - 1 
 
     if low  < high:
-        print(low)
-        print(high)
         pivot = partition(items, low, high)
-        # print(pivot)
         # Left side of pivot
         quick_sort(items, low, pivot - 1)
         # Right side of pivot
@@ -206,15 +201,10 @@ def quick_sort(items, low = 0, high = -1):
 
 
 def partition(items, low, high):
-    # Selecting pivet as far right number
+    # Selecting pivot as far right number
     pivot = items[high]
-    # print(pivot)
-    # print("Hi")
-    # pivet = random.randint(len(items))
     i = low - 1
     j = low
-    # print(i)
-    # print(j)
     while j <= high - 1:
         print(j)
         if items[j] <= pivot:
@@ -222,13 +212,9 @@ def partition(items, low, high):
             items[i], items[j] = items[j], items[i]
         j += 1
 
-
-    # swap(items, i)
     temp = items[i + 1]
     items[i + 1] = pivot
     items[high] = temp
-    # items[i + 1], items[high] = items[high], items[items + 1]
-    
     return i + 1
 
 def random_ints(count=20, min=1, max=50):
