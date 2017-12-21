@@ -6,15 +6,20 @@ def contains(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
-    clean_text = re.sub('[^A-Za-z]+', '', text).lower().split()
-    # word_array = clean_text.split()
-    # print(word_array)
-    for w in clean_text:
-        print(w)
-        # print(pattern)
-        if pattern == w:
-            return True
-    return False
+    # clean_text = re.sub('[^A-Za-z]+', '', text).lower().split()
+    # # word_array = clean_text.split()
+    # # print(word_array)
+    # for w in clean_text:
+    #     print(w)
+    #     # print(pattern)
+    #     if pattern == w:
+    #         return True
+    # return False
+    found_word = find_index(text, pattern)
+    if found_word is None:
+        return False
+    else:
+        return True
 
 
 
@@ -24,11 +29,31 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
-    clean_text = re.sub(r'[^A-Za-z ]+', '', text).lower()
-    try:
-        return clean_text.index('zzzzzzz')
-    except ValueError:
-         return None
+
+    # clean_text = re.sub(r'[^A-Za-z ]+', '', text).lower()
+    # try:
+    #     return clean_text.index('zzzzzzz')
+    # except ValueError:
+    #      return None
+    p_list = list(pattern)
+    current_index = 0
+    current_pattern_index = 0
+    while current_index < len(pattern) - 1:
+        for l in text:
+            # print(l)
+            if l == p_list[current_pattern_index]:
+                current_pattern_index = current_pattern_index + 1
+                # print(current_index)
+                # print(l)
+                if len(pattern) == current_pattern_index:
+                    print(current_pattern_index)
+                    print(len(pattern))
+                    print("word was found")
+                    return current_index
+
+            current_index = current_index + 1
+    return None
+
 
 
 def find_all_indexes(text, pattern):
@@ -70,8 +95,8 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    print(contains("name", "n"))
-    # print(find_index("hi name is", "name"))
+    # print(contains("name", "n"))
+    find_index("hinamisname", "name")
 
 
 # def find_word_in_sentence(sentence, word):
