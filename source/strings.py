@@ -5,10 +5,10 @@ def contains(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
-    found_word = find_index(text, pattern)
     if pattern == '':
         return True
-
+        
+    found_word = find_index(text, pattern)
     if found_word is None:
         return False
     else:
