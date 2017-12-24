@@ -25,22 +25,28 @@ def find_index(text, pattern):
     p_list = list(pattern)
     current_index = 0
     current_pattern_index = 0
-    while current_index < len(pattern) - 1:
+    if pattern == '':
+            return 0
+
+    while current_index <= len(text):
+
         for l in text:
             # print(l)
             if l == p_list[current_pattern_index]:
                 current_pattern_index = current_pattern_index + 1
-                # print(current_index)
-                # print(l)
+                # print("This is the current index {}".format(current_index))
+                print("This is the current letter {}".format(l))
                 if len(pattern) == current_pattern_index:
                     print(current_pattern_index)
                     print(len(pattern))
                     print("word was found")
-                    return current_index
+                    final_index = current_index - (current_pattern_index - 1)
+                    return final_index
             else:
                 current_pattern_index = 0
-
-            current_index = current_index + 1
+    
+            print("This is the current index {}".format(current_index))
+            current_index += 1
     return None
             
         
