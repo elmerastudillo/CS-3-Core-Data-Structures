@@ -22,31 +22,39 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
-    p_list = list(pattern)
+    # Storing index of current text
     current_index = 0
+    # Storing index of current place in pattern
     current_pattern_index = 0
+    # Edge case if pattern is empty
     if pattern == '':
             return 0
 
-    while current_index <= len(text):
-
-        for l in text:
-            # print(l)
-            if l == p_list[current_pattern_index]:
-                current_pattern_index = current_pattern_index + 1
-                # print("This is the current index {}".format(current_index))
-                print("This is the current letter {}".format(l))
-                if len(pattern) == current_pattern_index:
-                    print(current_pattern_index)
-                    print(len(pattern))
-                    print("word was found")
-                    final_index = current_index - (current_pattern_index - 1)
-                    return final_index
-            else:
+    # If current index is less then legnth of text then keep looping
+    while current_index <= len(text) - 1:
+        print("Does {} and this {} match".format(text[current_index],pattern[current_pattern_index]))
+        # If the index in text and the index in the pattern are equal
+        if text[current_index] == pattern[current_pattern_index]:
+            # Incremenet the current_pattern index by 1 to check the next letter 
+            current_pattern_index = current_pattern_index + 1
+            # if the length of the pattern is equal to the current_pattern_index we 
+            # found the word
+            if len(pattern) == current_pattern_index:
+                print("word was found")
+                # Getting the index of the first letter of the pattern
+                final_index = current_index - (current_pattern_index - 1)
+                print("This is the final index {}".format(final_index))
+                return final_index
+        else:
+            # If pattern index is more than 0
+            if current_pattern_index > 0:
+                # Check the last letter checked against the pattern from the beggining
+                current_index = current_index - 1
+                # Return it to 0 to start the check over again
                 current_pattern_index = 0
-    
-            print("This is the current index {}".format(current_index))
-            current_index += 1
+        print("This is the current index {}".format(current_index))
+        # Increment the index by 1
+        current_index += 1
     return None
             
         
