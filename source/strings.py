@@ -66,11 +66,15 @@ def find_all_indexes(text, pattern):
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
 
+    # Need to find a way to search through the same text multiple times for the pattern staring 
+    # from the last index we searched
+    # ummmm! 
     found_indexes = []
-    while len(text) is not None:
+    i = 0
+    while i < len(text):
         index = find_index(text,pattern)
-
-
+        found_indexes.append(index)
+    return found_indexes
 
 
 def test_string_algorithms(text, pattern):
