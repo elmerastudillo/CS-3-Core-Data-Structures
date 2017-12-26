@@ -71,10 +71,14 @@ def find_all_indexes(text, pattern):
     # ummmm! 
     found_indexes = []
     i = 0
-    while i < len(text):
+    while i != len(text):
         index = find_index(text,pattern)
         found_indexes.append(index)
-    return found_indexes
+        i = i + 1
+    if found_indexes is not None:
+        return []
+    else:
+        return found_indexes
 
 
 def test_string_algorithms(text, pattern):
