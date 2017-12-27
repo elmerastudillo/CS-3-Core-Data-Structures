@@ -32,7 +32,7 @@ def find_index(text, pattern):
 
     # If current index is less then legnth of text then keep looping
     while current_index <= len(text) - 1:
-        print("Does {} and this {} match".format(text[current_index],pattern[current_pattern_index]))
+        # print("Does {} and this {} match".format(text[current_index],pattern[current_pattern_index]))
         # If the index in text and the index in the pattern are equal
         if text[current_index] == pattern[current_pattern_index]:
             # Incremenet the current_pattern index by 1 to check the next letter 
@@ -40,10 +40,10 @@ def find_index(text, pattern):
             # if the length of the pattern is equal to the current_pattern_index we 
             # found the word
             if len(pattern) == current_pattern_index:
-                print("word was found")
+                # print("word was found")
                 # Getting the index of the first letter of the pattern
                 final_index = current_index - (current_pattern_index - 1)
-                print("This is the final index {}".format(final_index))
+                # print("This is the final index {}".format(final_index))
                 return final_index
         else:
             # If pattern index is more than 0
@@ -52,7 +52,7 @@ def find_index(text, pattern):
                 current_index = current_index - 1
                 # Return it to 0 to start the check over again
                 current_pattern_index = 0
-        print("This is the current index {}".format(current_index))
+        # print("This is the current index {}".format(current_index))
         # Increment the index by 1
         current_index += 1
     return None
@@ -70,14 +70,32 @@ def find_all_indexes(text, pattern):
     # from the last index we searched
     # ummmm! 
     found_indexes = []
-    i = 0
-    while i != len(text):
-        index = find_index(text,pattern)
-        found_indexes.append(index)
-        i = i + 1
-    if found_indexes is not None:
+    index = 0
+    length_pattern = len(pattern)
+
+    while index < len(text):
+        print('This is the length of the pattern {}'.format(length_pattern))
+        if pattern == '':
+            for l in range(len(text)):
+                found_indexes.append(l)
+            return found_indexes
+        else:
+            print(text)
+            print(text[index:])
+            print('This is the pattern we need to find {}'.format(pattern))
+            found_index = find_index(text[index:], pattern)
+            print('This is the current found index {}'.format(found_index))
+            if found_index != -1 and found_index != None:
+                found_indexes.append(found_index)
+                print('These are the found indexes {}'.format(found_indexes))
+                index += found_index + len(pattern)
+                print('This is the index {}'.format(index))
+            else:
+                index += 1
+    if found_indexes is None:
         return []
     else:
+        print('This is the final indexes {}'.format(found_indexes))
         return found_indexes
 
 
