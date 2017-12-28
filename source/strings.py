@@ -64,8 +64,6 @@ def find_all_indexes(text, pattern):
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_all_indexes here (iteratively and/or recursively)
-
     # Need to find a way to search through the same text multiple times for the pattern staring 
     # from the last index we searched
     # ummmm! 
