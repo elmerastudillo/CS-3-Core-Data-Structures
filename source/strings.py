@@ -4,7 +4,7 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement contains here (iteratively and/or recursively)
+    # Implement contains here (iteratively and/or recursively)
     if pattern == '':
         return True
         
@@ -21,7 +21,7 @@ def find_index(text, pattern):
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_index here (iteratively and/or recursively)
+    # Implement find_index here (iteratively and/or recursively)
     # Storing index of current text
     current_index = 0
     # Storing index of current place in pattern
@@ -64,6 +64,7 @@ def find_all_indexes(text, pattern):
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
+    # Implement find_all_indexes here (iteratively and/or recursively)
     # Need to find a way to search through the same text multiple times for the pattern staring 
     # from the last index we searched
     # ummmm! 
