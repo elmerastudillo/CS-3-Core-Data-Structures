@@ -16,14 +16,14 @@ def contains(text, pattern):
 
 
 
-def find_index(text, pattern):
+def find_index(text, pattern, current_index = 0):
     """Return the starting index of the first occurrence of pattern in text,
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # Implement find_index here (iteratively and/or recursively)
     # Storing index of current text
-    current_index = 0
+    # current_index = 0
     # Storing index of current place in pattern
     current_pattern_index = 0
     # Edge case if pattern is empty
@@ -80,14 +80,13 @@ def find_all_indexes(text, pattern):
             return found_indexes
         else:
             print(text)
-            print(text[index:])
             print('This is the pattern we need to find {}'.format(pattern))
-            found_index = find_index(text[index:], pattern)
+            found_index = find_index(text, pattern, index)
             print('This is the current found index {}'.format(found_index))
             if found_index != -1 and found_index != None:
                 found_indexes.append(found_index)
                 print('These are the found indexes {}'.format(found_indexes))
-                index += found_index + len(pattern)
+                index = found_index + length_pattern
                 print('This is the index {}'.format(index))
             else:
                 index += 1
