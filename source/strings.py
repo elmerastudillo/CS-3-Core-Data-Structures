@@ -69,7 +69,7 @@ def find_all_indexes(text, pattern):
     index = 0
     length_pattern = len(pattern)
 
-    while index < len(text):
+    while index < len(text) - 1:
         print('This is the length of the pattern {}'.format(length_pattern))
         if pattern == '':
             for l in range(len(text)):
