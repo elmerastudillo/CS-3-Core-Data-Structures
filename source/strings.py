@@ -69,7 +69,7 @@ def find_all_indexes(text, pattern):
     index = 0
     length_pattern = len(pattern)
 
-    while index < len(text) - 1:
+    while index < len(text):
         print('This is the length of the pattern {}'.format(length_pattern))
         if pattern == '':
             for l in range(len(text)):
@@ -81,10 +81,11 @@ def find_all_indexes(text, pattern):
             found_index = find_index(text, pattern, index)
             print('This is the current found index {}'.format(found_index))
             if found_index != -1 and found_index != None:
+                print('We will add this index {}'.format(index))
                 found_indexes.append(found_index)
                 print('These are the found indexes {}'.format(found_indexes))
                 index = found_index + length_pattern
-                print('This is the index {}'.format(index))
+                print('This is the new index to look for {}'.format(index))
             else:
                 index += 1
     if found_indexes is None:
