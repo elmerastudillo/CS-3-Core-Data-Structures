@@ -21,15 +21,30 @@ def is_palindrome(text):
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
     """Check if text is a palindrome ite"""
-    clean_text = re.sub('[^A-Za-z0-9]+', '', text).lower()
-    reverse_text = ""
-    for index in range(len(clean_text)):
+    # clean_text = re.sub('[^A-Za-z0-9]+', '', text).lower()
+    # for index in range(len(text)):
+    #     end_index = text[-index - 1]
+    #     if index == end_index:
+
         # Starting the index at -1 (last letter)
-        reverse_text += clean_text[-index - 1]
-    if reverse_text == clean_text:
-        return True
-    else:
-        return False
+    #     reverse_text = clean_text[-index - 1]
+    # if reverse_text == clean_text:
+    #     return True
+    # else:
+    #     return False
+    clean_text = remove_punctuation_and_remove_text(text)
+    first_index = 0
+    last_index = len(clean_text) - 1
+    while first_index < len(clean_text):
+        if clean_text[first_index] != clean_text[last_index]:
+            print("This is not a palindrome")
+            return False
+        else:
+            first_index += 1
+            last_index -= 1
+    return True
+
+
 
 
 def is_palindrome_recursive(text, left=None, right=None):
@@ -50,6 +65,9 @@ def is_palindrome_recursive(text, left=None, right=None):
     return True
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
+
+def remove_punctuation_and_remove_text(text):
+    return ''.join([i for i in text.lower() if i in string.ascii_letters])
 
 
 def main():
