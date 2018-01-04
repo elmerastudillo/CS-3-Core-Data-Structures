@@ -20,26 +20,18 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
-    """Check if text is a palindrome ite"""
-    # clean_text = re.sub('[^A-Za-z0-9]+', '', text).lower()
-    # for index in range(len(text)):
-    #     end_index = text[-index - 1]
-    #     if index == end_index:
-
-        # Starting the index at -1 (last letter)
-    #     reverse_text = clean_text[-index - 1]
-    # if reverse_text == clean_text:
-    #     return True
-    # else:
-    #     return False
+    """Check if text is a palindrome iteratively"""
+    # removing punctuation and converting all letters to lower case
     clean_text = remove_punctuation_and_remove_text(text)
     first_index = 0
     last_index = len(clean_text) - 1
     while first_index < len(clean_text):
+        # If first index of text does not equal last index of text then return False
         if clean_text[first_index] != clean_text[last_index]:
             print("This is not a palindrome")
             return False
         else:
+            # increment first and last index
             first_index += 1
             last_index -= 1
     return True
