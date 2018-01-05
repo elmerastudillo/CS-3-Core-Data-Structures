@@ -73,6 +73,7 @@ class TestPalindromes(unittest.TestCase):
         assert is_palindrome('AAABB') is False
         assert is_palindrome('AAABBB') is False
         assert is_palindrome('ABCZBA') is False
+        assert is_palindrome('ABCZBA') is False
         assert is_palindrome('ABCCZA') is False
         assert is_palindrome('ABCCBZ') is False
         assert is_palindrome('ABCDZCBA') is False

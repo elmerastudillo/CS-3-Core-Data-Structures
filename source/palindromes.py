@@ -41,24 +41,21 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
+
     if left is None and right is None:
         text = remove_punctuation_and_remove_text(text)
-    print("This is the text: {}".format(text))
+        left = 0
+        right = len(text) - 1
+
     if len(text) < 1 or text == '':
         return True
 
-    if left is None and right is None:
-        left = 0
-        right = len(text) - 1
-    print("These are the indexes: {}, {}".format(left, right))
-
     if left <= right:
         if text[left] == text[right]:
-            is_palindrome_recursive(text, left=left + 1, right=right - 1)
+            return is_palindrome_recursive(text, left=left + 1, right=right - 1)
         else:
-            print("This is not a palindrome")
             return False
-    print("This is a palindrome")
+
     return True
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
