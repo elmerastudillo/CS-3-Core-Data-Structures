@@ -19,7 +19,6 @@ def is_palindrome(text):
 
 
 def is_palindrome_iterative(text):
-    # TODO: implement the is_palindrome function iteratively here
     """Check if text is a palindrome iteratively"""
     # removing punctuation and converting all letters to lower case
     clean_text = remove_punctuation_and_remove_text(text)
@@ -40,25 +39,29 @@ def is_palindrome_iterative(text):
 
 
 def is_palindrome_recursive(text, left=None, right=None):
-    # TODO: implement the is_palindrome function recursively here
-
+    """Check if text is a palindrome recursively"""
+    # If left and right are none then remove text punctutation
     if left is None and right is None:
         text = remove_punctuation_and_remove_text(text)
+        # Set left and right var to hold the correct starting index
         left = 0
         right = len(text) - 1
 
+    # If text is less than 1 or empty then return true
     if len(text) < 1 or text == '':
         return True
 
+    # If left index is less than the right index
     if left <= right:
+        # If left and right index are the same
         if text[left] == text[right]:
+            # call recursively with the new indexes to check
             return is_palindrome_recursive(text, left=left + 1, right=right - 1)
         else:
+            # Is not palindrome
             return False
-
+    # Is palindrome
     return True
-    # once implemented, change is_palindrome to call is_palindrome_recursive
-    # to verify that your iterative implementation passes all tests
 
 def remove_punctuation_and_remove_text(text):
     return ''.join([i for i in text.lower() if i in string.ascii_letters])
