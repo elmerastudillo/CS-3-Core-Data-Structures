@@ -64,6 +64,7 @@ def is_palindrome_recursive(text, left=None, right=None):
     return True
 
 def remove_punctuation_and_remove_text(text):
+    """Remove punctuation and convert all text to lowercase"""
     return ''.join([i for i in text.lower() if i in string.ascii_letters])
 
 
