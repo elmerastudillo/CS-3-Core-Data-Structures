@@ -1,7 +1,6 @@
 #!python
 
 import string
-import re
 # Hint: Use these string constants to ignore capitalization and/or punctuation
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -35,9 +34,6 @@ def is_palindrome_iterative(text):
             last_index -= 1
     return True
 
-
-
-
 def is_palindrome_recursive(text, left=None, right=None):
     """Check if text is a palindrome recursively"""
     # If left and right are none then remove text punctutation
@@ -50,7 +46,6 @@ def is_palindrome_recursive(text, left=None, right=None):
     # If text is less than 1 or empty then return true
     if len(text) < 1 or text == '':
         return True
-
     # If left index is less than the right index
     if left <= right:
         # If left and right index are the same
