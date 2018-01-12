@@ -88,7 +88,7 @@ def encode(number, base):
     # TODO: Encode number in hexadecimal (base 16)
     # ...
     if base is 16:
-         while number > 0:
+        while number > 0:
             # Get the remainder as the remainder is the actual binary digit
             remainder = number % base
             # set the number to be the whole number left after division

@@ -35,18 +35,34 @@ def binary_search(array, item):
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
     # return binary_search_iterative(array, item)
-    return binary_search_recursive(array, item)
+    # return binary_search_recursive(array, item)
+    return binary_search_iterative(array, item)
 
 
 
 def binary_search_iterative(array, item):
     # TODO: implement binary search iteratively here
-    lower_bound = 0
-    upper_bound = (len(array) - 1)
+    left_bound = 0
+    right_bound = (len(array) - 1)
 
-   # while 
+    if array[left_bound] == item:
+        return left_bound
+    elif array[right_bound] == item:
+        return right_bound
 
-    pass
+    while left_bound <= right_bound:
+        middle = int((left_bound + right_bound) / 2)
+        print("This is my middle {}".format(middle))
+        print("This is the leftbound {} and rightbound {}".format(left_bound, right_bound))
+        if item == array[middle]:
+            return middle
+        if array[middle] < item:
+            left_bound = middle + 1
+        if array[middle] > item:
+            right_bound = middle - 1
+
+
+
     # once implemented, change binary_search to call binary_search_iterative
     # to verify that your iterative implementation passes all tests
 
@@ -82,13 +98,15 @@ def binary_search_recursive(array, item, left=None, right=None):
         
     print("left " + str(left))
     print("right " + str(right))
-    return binary_search_recursive(array, item, left,right)
+    return binary_search_recursive(array, item, left, right)
 
     
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
 names = ['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick', 'Winnie']
-binary_search_recursive(names, 'Winnie')
+middle = binary_search_recursive(names, 'Alex')
+print("This is the item we are looking for: {}".format(middle))
+# binary_search_recursive(names, 'Winnie')
 # linear_search_recursive(names, "Nick")
 
 
